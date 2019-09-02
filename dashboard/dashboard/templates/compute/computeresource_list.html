@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="nav-right">
+<a href="{% url 'AddComputeResource' %}">+ Add Resource</a>
+</div>
+  <div class="container">
+  <ul class="list-group">
+  {%  for d, n in object_list, network %}
+    <li class="list-group-item">{{ d }}{{ n }}</li>
+  {%  endfor %}
+  </ul>
+  </div>
+{% endblock content %}
+
+
