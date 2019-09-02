@@ -25,7 +25,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/dashboard/config/settings/local.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/dashboard/dashboard/templates/compute" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -35,6 +35,9 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Matt\PycharmProjects\Dashboard\dashboard\dashboard\templates\compute" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Matt\PycharmProjects\Dashboard\dashboard\dashboard" />
     </key>
@@ -88,7 +91,7 @@
       <option name="presentableId" value="Default" />
       <updated>1567343539918</updated>
       <workItem from="1567343542943" duration="1164000" />
-      <workItem from="1567345232360" duration="29470000" />
+      <workItem from="1567345232360" duration="33961000" />
     </task>
     <servers />
   </component>

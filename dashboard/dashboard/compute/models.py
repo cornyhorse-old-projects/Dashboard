@@ -15,7 +15,7 @@ class Network(models.Model):
 
 class ComputeResource(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE,)
-    network = models.ForeignKey(Network, on_delete=models.SET_NULL, null=True, blank=True)
+    network = models.ForeignKey(Network, on_delete=models.CASCADE)#, null=True, blank=True)
     resource_name = models.CharField(max_length=255, null=True, blank=True)
     portable = models.BooleanField(blank=True, null=True)
     local_ipv4_address = models.GenericIPAddressField(protocol='IPv4', blank=True, null=True)

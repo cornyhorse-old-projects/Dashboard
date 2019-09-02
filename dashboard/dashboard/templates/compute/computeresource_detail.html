@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ object.resource_name }}</h1>
+    <p>Network: {{ object.network }}</p>
+    <p>Portable: {{ object.portable }}</p>
+    <p>Local IPv4: {{ object.local_ipv4_address }}</p>
+    <p>Local IPv6: {{ object.local_ipv6_address }}</p>
+    <p>Local IPv4: {{ object.external_ipv4_address }}</p>
+    <p>External IPv6: {{ object.external_ipv6_address }}</p>
+    <p>Powered On {{ object.powered_on }}</p>
+  <p>Powered On At: {{ object.powered_on_utc }}</p>
+  <p>Uptime: {{ object.uptime }}</p>
+  <p>Last Seen: {{ object.last_seen }}</p>
+    <p>Description: {{ object.description }}</p>
+{% endblock content %}

@@ -4,9 +4,11 @@
 {% block content %}
   <div class="nav-right">
 <a href="{% url 'AddComputeResource' %}">+ Add Resource</a>
+<a href="{% url 'Add-Network' %}">+ Add Network</a>
 </div>
   <div class="container">
   {% for n in network %}
+    {% if network|length > 0 %}
     <h1>Network: {{ n }}</h1>
     <table class="table-bordered">
     <thead>
@@ -24,6 +26,7 @@
     </tr>
     </thead>
     {% for r in object_list %}
+      {% ifequal r.network n %}
       <tr>
       <td>{{ r.resource_name }}</td>
       <td>{{ r.portable }}</td>
@@ -36,8 +39,10 @@
       <td>{{ r.uptime }}</td>
       <td>{{ r.last_seen }}</td>
       </tr>
+      {% endifequal %}
       {% endfor %}
     </table>
+    {% endif %}
   {% endfor %}
 
   </div>
