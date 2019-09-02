@@ -14,13 +14,16 @@ User = get_user_model()
 
 # Create your views here.
 class ResourceListView(LoginRequiredMixin, ListView):
-    model = m.ComputeResource
-    network = m.Network.objects.select_related()
+    model = m.ComputeResource#.objects.select_related('network').filter(network__isnull=True)
 
     def get_queryset(self):
-        return (
-            super(ResourceListView, self).get_queryset().filter(owner=self.request.user)
-        )
+        qs = super(ResourceListView, self).get_queryset().filter(owner=self.request.user)
+        return qs
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(ResourceListView, self).get_context_data(**kwargs)
+        context['network'] = m.Network.objects.distinct()
+        return context
 
 
 class ResourceCreateView(LoginRequiredMixin, CreateView):

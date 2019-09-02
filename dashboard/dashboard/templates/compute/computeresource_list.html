@@ -6,11 +6,40 @@
 <a href="{% url 'AddComputeResource' %}">+ Add Resource</a>
 </div>
   <div class="container">
-  <ul class="list-group">
-  {%  for d, n in object_list, network %}
-    <li class="list-group-item">{{ d }}{{ n }}</li>
-  {%  endfor %}
-  </ul>
+  {% for n in network %}
+    <h1>Network: {{ n }}</h1>
+    <table class="table-bordered">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Portable</th>
+      <th scope="col">Local IPv4</th>
+      <th scope="col">Local IPv6</th>
+      <th scope="col">External IPv4</th>
+      <th scope="col">External IPv6</th>
+      <th scope="col">Powered On</th>
+      <th scope="col">Powered On At</th>
+      <th scope="col">Uptime</th>
+      <th scope="col">Last Seen</th>
+    </tr>
+    </thead>
+    {% for r in object_list %}
+      <tr>
+      <td>{{ r.resource_name }}</td>
+      <td>{{ r.portable }}</td>
+      <td>{{ r.local_ipv4 }}</td>
+      <td>{{ r.local_ipv6 }}</td>
+      <td>{{ r.external_ipv4 }}</td>
+      <td>{{ r.external_ipv6 }}</td>
+      <td>{{ r.powered_on }}</td>
+      <td>{{ r.powered_on_at }}</td>
+      <td>{{ r.uptime }}</td>
+      <td>{{ r.last_seen }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% endfor %}
+
   </div>
 {% endblock content %}
 
