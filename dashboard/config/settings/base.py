@@ -45,6 +45,16 @@ LOCALE_PATHS = [ROOT_DIR.path("locale")]
 DATABASES = {
     "default": env.db("DATABASE_URL", default="postgres:///dashboard")
 }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '5432'
+    }
+}
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
 # URLS

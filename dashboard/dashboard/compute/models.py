@@ -1,18 +1,22 @@
+from datetime import datetime
+
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
-from django.db.models.signals import  post_save
+from django.db.models.signals import post_save
+
 User = get_user_model()
 
+
 # Create your models here.
-#class UserProfile(models.Model):
+# class UserProfile(models.Model):
 #    user = models.OneToOneField(User,on_delete=models.CASCADE)
 #    pair = models.ManyToManyField('self' ,through='PairData', symmetrical=False)
 
-#def create_user_profile(sender, instance, created, **kwargs):
+# def create_user_profile(sender, instance, created, **kwargs):
 #    if created:
 #        profile, created = UserProfile.objects.get_or_create(user=instance)
-#post_save.connect(create_user_profile, sender=User)
+# post_save.connect(create_user_profile, sender=User)
 
 class Network(models.Model):
     network_name = models.CharField(max_length=255)
@@ -23,14 +27,14 @@ class Network(models.Model):
     def __str__(self):
         return self.network_name
 
-'''
-class NetworkOwner(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    network = models.ForeignKey(Network, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return '{}: {}'.format(self.owner_id, self.network.network_name)
-'''
+# class NetworkOwner(models.Model):
+#     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+#     network = models.ForeignKey(Network, on_delete=models.CASCADE)
+#
+#     def __str__(self):
+#         return '{}: {}'.format(self.owner_id, self.network.network_name)
+
 
 class ComputeResource(models.Model):
     network = models.ForeignKey(
@@ -51,9 +55,9 @@ class ComputeResource(models.Model):
         protocol="IPv6", blank=True, null=True
     )
     powered_on = models.BooleanField(blank=True, null=True)
-    powered_on_utc = models.DateTimeField(blank=True, null=True)
+    powered_on_utc = models.DateTimeField(default=datetime.now, blank=True, null=True)
     uptime = models.DurationField(blank=True, null=True)
-    last_seen = models.DateTimeField(blank=True, null=True)
+    last_seen = models.DateTimeField(default=datetime.now, blank=True, null=True)
     description = models.TextField(null=True, blank=True)
 
     def __str__(self):
