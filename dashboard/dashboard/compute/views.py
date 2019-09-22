@@ -27,12 +27,14 @@ class ResourceListView(LoginRequiredMixin, ListView):
         qs = (super(ResourceListView, self).get_queryset().all())
         logging.info(qs)
               # prefetch_related('Network', 'NetworkOwner').filter(network__networkowner__owner=self.request.user))
+        #logging.info("^^^^^^^^^^^^^^^^^")
         return qs
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ResourceListView, self).get_context_data(**kwargs)
         context["network"] = m.Network.objects.distinct()
         context["network"] = m.Network.objects.all()
+        #logging.info("AAAAAAAAAAAAAAAAAA")
         logging.info(m.Network.objects.all().filter(owners=self.request.user).query)
             # .filter(owners=self.request.user)
         logging.info("---------")
@@ -43,12 +45,12 @@ class ResourceListView(LoginRequiredMixin, ListView):
 class NetworkCreateView(LoginRequiredMixin, CreateView):
     model = m.Network
     login_url = "login"
-    fields = ("network_name", "network_description", "located_in_cloud")
+    fields = ("owners","network_name", "network_description", "located_in_cloud")
 
     success_url = reverse_lazy("ComputeResources")
 
     def form_valid(self, form):
-        form.instance.owners = self.request.user
+        form.instance.owner = self.request.user
         return super().form_valid(form)
 
 
