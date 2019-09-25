@@ -47,13 +47,13 @@ class ResourceListView(LoginRequiredMixin, ListView):
 class NetworkCreateView(LoginRequiredMixin, CreateView):
     model = m.Network
     login_url = "login"
-    fields = ("owners","network_name", "network_description", "located_in_cloud")
+    fields = ("network_name", "network_description", "located_in_cloud")
 
     success_url = reverse_lazy("ComputeResources")
 
     def form_valid(self, form):
-        form.instance.owner = self.request.user
-        return super().form_valid(form)
+        form.instance.owners = self.request.user
+        return super(NetworkCreateView,self).form_valid(form)
 
 
 
