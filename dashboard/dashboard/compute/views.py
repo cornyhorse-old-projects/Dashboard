@@ -23,22 +23,24 @@ class ResourceListView(LoginRequiredMixin, ListView):
         m.ComputeResource
     )  # .objects.select_related('network').filter(network__isnull=True)
 
-    def get_queryset(self):
-        qs = (super(ResourceListView, self).get_queryset().all())
-        logging.info(qs)
-              # prefetch_related('Network', 'NetworkOwner').filter(network__networkowner__owner=self.request.user))
-        #logging.info("^^^^^^^^^^^^^^^^^")
-        return qs
+    # def get_queryset(self):
+    #     qs = (super(ResourceListView, self).get_queryset().all())
+    #     logging.info("Printing qs")
+    #     logging.info(qs)
+    #           # prefetch_related('Network', 'NetworkOwner').filter(network__networkowner__owner=self.request.user))
+    #     #logging.info("^^^^^^^^^^^^^^^^^")
+    #     #logging.info(m.Network.objects.all().select_related('owners').filter(owners=self.request.user))
+    #     return qs
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ResourceListView, self).get_context_data(**kwargs)
-        context["network"] = m.Network.objects.distinct()
-        context["network"] = m.Network.objects.all()
-        #logging.info("AAAAAAAAAAAAAAAAAA")
-        logging.info(m.Network.objects.all().filter(owners=self.request.user).query)
+        #context["network"] = m.Network.objects.distinct()
+        #context["network"] = m.Network.objects.all()
+        context["network"] = m.Network.objects.select_related('owners').filter(owners=self.request.user)
+        #logging.info(m.Network.objects.all().filter(owners=self.request.user).query)
             # .filter(owners=self.request.user)
-        logging.info("---------")
-        logging.info(context)
+        #logging.info("---------")
+        #logging.info(context)
         return context
 
 
@@ -52,6 +54,8 @@ class NetworkCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super().form_valid(form)
+
+
 
 
 class ResourceCreateView(LoginRequiredMixin, CreateView):
