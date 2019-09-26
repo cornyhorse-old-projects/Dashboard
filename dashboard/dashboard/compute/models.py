@@ -22,7 +22,9 @@ class Network(models.Model):
     network_name = models.CharField(max_length=255)
     network_description = models.TextField(null=True, blank=True)
     located_in_cloud = models.BooleanField()
-    owners = models.ManyToManyField(User)
+    #owners = models.ManyToManyField(User)
+    owners = models.ForeignKey(User, on_delete=models.CASCADE)
+
 
     def __str__(self):
         return self.network_name
@@ -65,7 +67,6 @@ class ComputeResource(models.Model):
             return "{} ({})".format(self.resource_name, self.network.network_name)
         else:
             return self.resource_name
-
 
 class Sensor(models.Model):
     # This is the sensor/adapter itself.
