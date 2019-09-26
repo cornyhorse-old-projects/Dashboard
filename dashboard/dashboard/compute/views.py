@@ -84,7 +84,7 @@ class ResourceCreateView(LoginRequiredMixin, CreateView):
     #      "description",
     #  )
     # #form = PersonForm()
-    # success_url = reverse_lazy("ComputeResources")
+    success_url = reverse_lazy("ComputeResources")
 
     # def form_valid(self, form):
     #     form.instance.owner = self.request.user
