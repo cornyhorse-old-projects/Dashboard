@@ -12,6 +12,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserChangeForm
 from django.shortcuts import redirect
 import logging
+from .forms import ResourceCreateForm
 
 
 User = get_user_model()
@@ -60,26 +61,34 @@ class NetworkCreateView(LoginRequiredMixin, CreateView):
 
 class ResourceCreateView(LoginRequiredMixin, CreateView):
     model = m.ComputeResource
-    login_url = "login"
-    fields = (
-        "network",
-        "resource_name",
-        "portable",
-        "local_ipv4_address",
-        "local_ipv6_address",
-        "external_ipv4_address",
-        "external_ipv6_address",
-        "powered_on",
-        "powered_on_utc",
-        "uptime",
-        "last_seen",
-        "description",
-    )
-    success_url = reverse_lazy("ComputeResources")
+    form_class=ResourceCreateForm
+    template_name='computeresource_form.html'
 
-    def form_valid(self, form):
-        form.instance.owner = self.request.user
-        return super().form_valid(form)
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+    #login_url = "login"
+    # fields = (
+    #      "network",
+    #      "resource_name",
+    #      "portable",
+    #      "local_ipv4_address",
+    #      "local_ipv6_address",
+    #      "external_ipv4_address",
+    #      "external_ipv6_address",
+    #      "powered_on",
+    #      "powered_on_utc",
+    #      "uptime",
+    #      "last_seen",
+    #      "description",
+    #  )
+    # #form = PersonForm()
+    # success_url = reverse_lazy("ComputeResources")
+
+    # def form_valid(self, form):
+    #     form.instance.owner = self.request.user
+    #     return super().form_valid(form)
 
 
 class ResourceDetailView(LoginRequiredMixin, DetailView):
