@@ -123,3 +123,18 @@ class ResourceDetailView(LoginRequiredMixin, DetailView):
     #             return redirect('update-network-details', id=request.parse_context['kwargs']['id'])
     #
     # pass
+
+class NetworkResourceUpdate(LoginRequiredMixin, UpdateView):
+    model = m.ComputeResource
+    form_class = ResourceCreateForm
+    template_name = 'compute/computeresource_update.html'
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.save()
+        return redirect('resource_detail', pk=self.kwargs['pk'])
