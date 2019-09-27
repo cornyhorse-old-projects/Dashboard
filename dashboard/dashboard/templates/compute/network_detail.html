@@ -9,5 +9,8 @@
     <button>
       <a href="{% url 'network_edit' pk=object.id %}">Edit</a>
     </button>
+    <button>
+      <a href="{% url 'network_delete' pk=object.id %}">Delete</a>
+    </button>
 
 {% endblock content %}

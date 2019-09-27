@@ -142,7 +142,7 @@ class NetworkResourceUpdate(LoginRequiredMixin, UpdateView):
 class NetworkResourceDelete(LoginRequiredMixin, DeleteView):
     model = m.ComputeResource
     success_url = reverse_lazy('ComputeResources')
-    template_name = 'compute/computeresource_delete.html'
+    template_name = 'compute/resource_delete.html'
 
 class NetworkDetailView(LoginRequiredMixin, DetailView):
     model = m.Network
@@ -161,3 +161,8 @@ class NetworkUpdate(LoginRequiredMixin, UpdateView):
         self.object = form.save(commit=False)
         self.object.save()
         return redirect('network_detail', pk=self.kwargs['pk'])
+
+class NetworkDelete(LoginRequiredMixin, DeleteView):
+    model = m.Network
+    success_url = reverse_lazy('ComputeResources')
+    template_name = 'compute/resource_delete.html'
