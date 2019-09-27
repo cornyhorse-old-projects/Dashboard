@@ -7,7 +7,7 @@
     <p>Located In Cloud: {{ object.located_in_cloud }}</p>
 
     <button>
-      <a href="{% url 'network_edit' pk=object.id %}">Edit</a>
+      <a href="{% url 'network_update' pk=object.id %}">Edit</a>
     </button>
     <button>
       <a href="{% url 'network_delete' pk=object.id %}">Delete</a>
