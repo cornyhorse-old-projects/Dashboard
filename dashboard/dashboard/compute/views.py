@@ -6,7 +6,7 @@ from django.views.generic import DetailView, RedirectView, UpdateView
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 from . import models as m
-from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserChangeForm
@@ -138,3 +138,8 @@ class NetworkResourceUpdate(LoginRequiredMixin, UpdateView):
         self.object = form.save(commit=False)
         self.object.save()
         return redirect('resource_detail', pk=self.kwargs['pk'])
+
+class NetworkResourceDelete(LoginRequiredMixin, DeleteView):
+    model = m.ComputeResource
+    success_url = reverse_lazy('ComputeResources')
+    template_name = 'compute/computeresource_delete.html'

@@ -18,4 +18,8 @@
       <a href="{% url 'networkResource_edit' pk=object.id %}">Edit</a>
     </button>
 
+    <button>
+      <a href="{% url 'networkResource_delete' pk=object.id %}">Delete</a>
+    </button>
+
 {% endblock content %}
