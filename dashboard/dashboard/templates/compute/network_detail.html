@@ -6,4 +6,8 @@
     <p>Network Description: {{ object.network_description }}</p>
     <p>Located In Cloud: {{ object.located_in_cloud }}</p>
 
+    <button>
+      <a href="{% url 'network_edit' pk=object.id %}">Edit</a>
+    </button>
+
 {% endblock content %}

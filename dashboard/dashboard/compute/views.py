@@ -151,3 +151,13 @@ class NetworkDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
+class NetworkUpdate(LoginRequiredMixin, UpdateView):
+    model = m.Network
+    form_class = NetworkForm
+    template_name = 'compute/network_update.html'
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.save()
+        return redirect('network_detail', pk=self.kwargs['pk'])
