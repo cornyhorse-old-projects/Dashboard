@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ object.network_name }}</h1>
+
+    <p>Network Description: {{ object.network_description }}</p>
+    <p>Located In Cloud: {{ object.located_in_cloud }}</p>
+
+{% endblock content %}

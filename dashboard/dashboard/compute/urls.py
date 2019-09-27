@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import ResourceListView, ResourceCreateView, NetworkCreateView, ResourceDetailView, NetworkResourceUpdate, NetworkResourceDelete
+from .views import ResourceListView, ResourceCreateView, NetworkCreateView, ResourceDetailView, NetworkResourceUpdate, NetworkResourceDelete\
+                    , NetworkDetailView
 
 
 urlpatterns = [
@@ -9,4 +10,5 @@ urlpatterns = [
      path('<int:pk>/', ResourceDetailView.as_view(), name='resource_detail'),
      path('<int:pk>/edit', NetworkResourceUpdate.as_view(), name='networkResource_edit'),
      path('<int:pk>/delete', NetworkResourceDelete.as_view(), name='networkResource_delete'),
+     path('network/<int:pk>', NetworkDetailView.as_view(), name="network_detail"),
 ]

@@ -12,7 +12,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserChangeForm
 from django.shortcuts import redirect
 import logging
-from .forms import ResourceCreateForm
+from .forms import ResourceCreateForm, NetworkForm
 
 
 User = get_user_model()
@@ -48,7 +48,7 @@ class ResourceListView(LoginRequiredMixin, ListView):
 class NetworkCreateView(LoginRequiredMixin, CreateView):
     model = m.Network
     login_url = "login"
-    fields = ("network_name", "network_description", "located_in_cloud")
+    form_class = NetworkForm
 
     success_url = reverse_lazy("ComputeResources")
 
@@ -143,3 +143,11 @@ class NetworkResourceDelete(LoginRequiredMixin, DeleteView):
     model = m.ComputeResource
     success_url = reverse_lazy('ComputeResources')
     template_name = 'compute/computeresource_delete.html'
+
+class NetworkDetailView(LoginRequiredMixin, DetailView):
+    model = m.Network
+    login_url = 'login'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context

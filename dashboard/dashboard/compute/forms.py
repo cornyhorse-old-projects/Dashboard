@@ -20,3 +20,9 @@ class ResourceCreateForm(forms.ModelForm):
 
         self.fields['network'].queryset = self.fields['network'].queryset.filter(
             owners=user)
+
+class NetworkForm(forms.ModelForm):
+
+    class Meta:
+        model = Network
+        fields = ["network_name", "network_description", "located_in_cloud"]
