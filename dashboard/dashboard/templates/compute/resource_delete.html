@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action="" method="post" id="delete_network_resource_form">
+      Are you sure you want to delete?
+        {% csrf_token %}
+      <button class="btn btn-success ml-2" type="submit">Yes</button>
+      <button class="btn btn-success ml-2"><a href=" {% url 'networkResources' %}">No</a></button>
+    </form>
+
+{% endblock content %}

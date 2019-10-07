@@ -4,14 +4,14 @@
 
 {% block content %}
 
-<h1>New Network</h1>
+<h1>Update Network</h1>
 
 <form action="" method="post">
 
     {% csrf_token %}
     {{ form|crispy }}
 
-  <button class="btn btn-success ml-2" type="submit">Save</button>
+  <button class="btn btn-success ml-2" type="submit">Update</button>
 
 </form>
 

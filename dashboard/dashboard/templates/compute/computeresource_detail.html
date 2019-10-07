@@ -9,8 +9,17 @@
     <p>Local IPv4: {{ object.external_ipv4_address }}</p>
     <p>External IPv6: {{ object.external_ipv6_address }}</p>
     <p>Powered On {{ object.powered_on }}</p>
-  <p>Powered On At: {{ object.powered_on_utc }}</p>
-  <p>Uptime: {{ object.uptime }}</p>
-  <p>Last Seen: {{ object.last_seen }}</p>
+    <p>Powered On At: {{ object.powered_on_utc }}</p>
+    <p>Uptime: {{ object.uptime }}</p>
+    <p>Last Seen: {{ object.last_seen }}</p>
     <p>Description: {{ object.description }}</p>
+
+    <button>
+      <a href="{% url 'networkResource_update' pk=object.id %}">Edit</a>
+    </button>
+
+    <button>
+      <a href="{% url 'networkResource_delete' pk=object.id %}">Delete</a>
+    </button>
+
 {% endblock content %}

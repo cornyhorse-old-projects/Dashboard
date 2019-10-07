@@ -16,7 +16,7 @@ urlpatterns = [
     path("users/", include("dashboard.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
-    path("ComputeResources/", include('dashboard.compute.urls'))
+    path("compute/", include('dashboard.compute.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
